@@ -27,10 +27,13 @@ const MenuComponent = () => {
             onClose={handleMenuClose}
           >
            <MenuItem onClick={handleMenuClose}>
+              <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>Strona glowna</Link>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
               <Link to="/gallery" style={{ textDecoration: 'none', color: 'inherit' }}>Galeria</Link>
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
-              <Link to="/news" style={{ textDecoration: 'none', color: 'inherit' }}>Aktulności</Link>
+              <Link to="/news" style={{ textDecoration: 'none', color: 'inherit' }}>Aktualności</Link>
             </MenuItem>
           </Menu>
           <Typography variant="h6">Menu</Typography>
