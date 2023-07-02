@@ -3,7 +3,9 @@ import Gallery from "./components/gallery";
 import News from "./components/news";
 import AddGallery from "./components/add-gallery";
 import AddNews from "./components/add-news";
+import GalleryPhotos from "./components/gallery-photos";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
           <Route exact path="/gallery" element={<Gallery />} /> 
           <Route exact path="/add-gallery" element={<AddGallery />} /> 
           <Route exact path="/add-news" element={<AddNews />} /> 
+          <Route path="/gallery/:id" element={<GalleryPhotos />} />
         </Routes>
       </div>
     </div>
