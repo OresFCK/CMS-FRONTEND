@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import api from '../api';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -17,7 +17,7 @@ function AddNews() {
   const classes = useStyles();
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
-  const [img, setImg] = useState(null); 
+  const [img, setImg] = useState(null);
   const [tekst, setTekst] = useState('');
 
   const handleNameChange = (event) => {
@@ -45,20 +45,16 @@ function AddNews() {
     formData.append('img', img);
     formData.append('tekst', tekst);
 
-    api
-      .post('add-news', formData)
+    axios.post('https://127.0.0.1:8000/api/add-news', formData)
       .then((response) => {
-        // Handle successful response
-        console.log(response.data);
-        // Reset form fields
+        console.log('News added successfully:', response.data);
         setName('');
         setLink('');
         setImg(null);
         setTekst('');
       })
       .catch((error) => {
-        // Handle error
-        console.error(error);
+        console.error('Error adding news:', error);
       });
   };
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import api from '../api';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -21,25 +21,21 @@ function AddGallery() {
     setName(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const galleryData = {
       name: name,
     };
+  
+    try {
+      const response = await axios.post('https://127.0.0.1:8000/api/gallery/add', galleryData);
+      console.log(response.data); // Handle the response as needed
+    } catch (error) {
+      console.error(error);
+    }
 
-    api
-      .post('add-gallery', galleryData)
-      .then((response) => {
-        // Handle successful response
-        console.log(response.data);
-        // Reset form fields
-        setName('');
-      })
-      .catch((error) => {
-        // Handle error
-        console.error(error);
-      });
+   
   };
 
   return (
